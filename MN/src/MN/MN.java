@@ -43,8 +43,7 @@ public class MN implements Serializable {
 	 */
 	public MN(String[][] s_row_column_value, int i_NodeValueNum,
 			boolean b_FullyConnectedNetwork) {
-		// 虏脦脢媒露脭脫娄脣碌脙梅拢潞脙没鲁脝戮脴脮贸 露脿脡脵赂枚脌脿卤冒 脢脟路帽陆篓脕垄脠芦脕陋脥酶b
-
+		// 我现在更改了
 		this.i_row = s_row_column_value.length;// 脨脨脢媒
 		this.i_column = s_row_column_value[0].length;// 脕脨脢媒
 		this.i_NodeValueNum = i_NodeValueNum;// 脫脨露脿脡脵路脰脌脿脢么脨脭脠隆脰碌
