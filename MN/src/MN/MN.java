@@ -37,36 +37,35 @@ public class MN implements Serializable {
  
 	/**
 	 * 
-	 * @param s_row_column_value 脙没鲁脝戮脴脮贸
-	 * @param i_NodeValueNum 脫脨露脿脡脵脰脰脢么脨脭
-	 * @param b_FullyConnectedNetwork 脢脟路帽陆篓脕垄脠芦脕卢陆脫
+	 * @param s_row_column_value 二维矩阵的行数
+	 * @param i_NodeValueNum    节点数
+	 * @param b_FullyConnectedNetwork 
 	 */
 	public MN(String[][] s_row_column_value, int i_NodeValueNum,
 			boolean b_FullyConnectedNetwork) {
-		// 我现在更改了
-		this.i_row = s_row_column_value.length;// 脨脨脢媒
-		this.i_column = s_row_column_value[0].length;// 脕脨脢媒
-		this.i_NodeValueNum = i_NodeValueNum;// 脫脨露脿脡脵路脰脌脿脢么脨脭脠隆脰碌
+		this.i_row = s_row_column_value.length;// 赋值行数
+		this.i_column = s_row_column_value[0].length;// 赋值列数
+		this.i_NodeValueNum = i_NodeValueNum;// 赋值节点数
 
 		g = new DefaultDirectedGraph<MNNode, MNLink>(MNLink.class);
 		nodeList = new HashMap<String, MNNode>();
 
 		// test
 
-		// 鲁玫脢录禄炉陆谩碌茫
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//脡猫脰脙脠脮脝脷赂帽脢陆
-		//System.out.println("init node begin time: " + df.format(new Date()));// new Date()脦陋禄帽脠隆碌卤脟掳脧碌脥鲁脢卤录盲
+		// 设置格式
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//日期格式
+		//System.out.println("init node begin time: " + df.format(new Date()));// new Date()
 		
 		for (int i = 0; i < this.i_row; ++i)
 			for (int j = 0; j < this.i_column; ++j) {
 				String s_name_temp = i + "_" + j;
 				MNNode node_temp = new MNNode(s_name_temp,
 						s_row_column_value[i][j], this.i_NodeValueNum);
-				// 脤铆录脫碌陆 nodeList
+				//  nodeList
 				addMNNode(node_temp);
 			}
 		System.out.println();
-		//System.out.println("init node end time: " + df.format(new Date()));// new Date()脦陋禄帽脠隆碌卤脟掳脧碌脥鲁脢卤录盲
+		//System.out.println("init node end time: " + df.format(new Date()));// new Date()
 		
 			/* create nodes as following:
 			0_0      0_1      0_2      ...   0_(i_column-1)
@@ -75,7 +74,7 @@ public class MN implements Serializable {
 			...      ...      ...      ...         ...
 			(i-1)_0 (i-1)_2 (i-1)_3    ...   (i-1)_(i_column-1)
 			*/
-           			//鲁玫脢录禄炉 卤脽
+           			//
 		if (b_FullyConnectedNetwork) {
 			BuildFullyConnectedNet();
 		} else {
@@ -145,7 +144,7 @@ public class MN implements Serializable {
         }
     }
     
-    //鲁玫脢录禄炉 卤脽     O(n^3)
+    //建立网络   时间复杂度     O(n^3)
 	public void BuildNet() {
 		for (int j = 0; j < this.i_column - 1; ++j)
 			for (int i = 0; i < this.i_row; ++i)
@@ -161,7 +160,7 @@ public class MN implements Serializable {
 				}
 	}
 	
-	//陆篓脕垄脠芦脕卢陆脫脥酶 
+	//建立前后链接 
 	public void BuildFullyConnectedNet() {
 
 		for (j = 0; j < this.i_column - 1; ++j)
@@ -260,7 +259,7 @@ public class MN implements Serializable {
 		link.v_weight[i_No] += d_weight;
 	}
 	
-	// 禄帽脠隆 source 碌陆 target脰庐录盲碌脛脠篓脰碌
+	// 获得链表的权重
 	public double get_link_weight(String s_name_source, String s_name_target,
 			int i_No) {
 		MNLink link = getMNLinkOf(s_name_source, s_name_target);
@@ -269,7 +268,7 @@ public class MN implements Serializable {
      
     
 	/**
-	 *  脙禄脫脨碌梅脫脙
+	 *  
 	 *	
 	 */
 	Node_Chain OutputNodeChain(int i_No, boolean b_Max) //// void OutputNodeChain(int i_No,bool b_Max)
